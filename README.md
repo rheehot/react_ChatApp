@@ -3,7 +3,7 @@
 
 ## 🗄 File Setting
 ----
-📦src 
+📦src  
  ┣ 📂assets -> Static (css/images/js)  
  ┃ ┣ 📂css  
  ┃ ┣ 📂images  
