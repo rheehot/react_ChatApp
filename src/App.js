@@ -8,7 +8,7 @@ import {
 
 import ChatPage from './components/ChatPage/ChatPage';
 import LoginPage from './components/LoginPage/LoginPage';
-import RegiserPage from './components/RegisterPage/RegiserPage';
+import RegitserPage from './components/RegisterPage/RegisterPage';
 
 
 
@@ -19,7 +19,7 @@ const App = () => {
         {/* component 컴포넌트 */}
         <Route exact path="/" component={ChatPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegiserPage} />
+        <Route exact path="/register" component={RegitserPage} />
       </Switch>
     </Router>
   );

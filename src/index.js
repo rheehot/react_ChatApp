@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+
+import "./index.css";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
-
 import Reducer from './redux/reducer';
 
+// react bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const createStoreWithMiddleware
