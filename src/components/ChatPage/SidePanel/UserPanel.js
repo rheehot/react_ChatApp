@@ -2,19 +2,19 @@ import React, { useRef } from 'react';
 import { GoComment } from 'react-icons/go'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Image from 'react-bootstrap/Image'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import firebase from '../../../firebase'
 import mime from 'mime-types';
-
+import { setPhotoURL } from '../../../redux/actions/user_action';
 const UserPanel = () => {
 
-    const user = useSelector(state => state.user.currentUser)
+    const user = useSelector(state => state.user.currentUser);
+    const dispatch = useDispatch();
+    const inputOpenImageRef = useRef();
 
     const handleLogout = () => {
         firebase.auth().signOut();
     }
-
-    const inputOpenImageRef = useRef();
 
     const handleOpenImageRef = () => {
         inputOpenImageRef.current.click();
@@ -22,22 +22,31 @@ const UserPanel = () => {
 
     const handleUploadImage = async (e) => {
         const file = e.target.files[0];
-        if (!file) return;
-
         const metadata = { contentType: mime.lookup(file.name) };
-        // 스토리지 파일 저장
 
+        // 스토리지 파일 저장
         try {
             let uploadTaskSnapshot = await firebase.storage().ref()
-                .chlid(`user_image/${user.uid}`) // 저장 경로
+                .child(`user_image/${user.uid}`) // 저장 경로
                 .put(file, metadata)
 
-            console.log(uploadTaskSnapshot)
-        } catch (error) {
+            let downloadURL = uploadTaskSnapshot.ref.getDownloadURL();
 
+            await firebase.auth().currentUser.getDownloadURL();
+
+            await firebase.auth().currentUser.updateProfile({
+                photoURL: downloadURL
+            })
+
+            dispatch(setPhotoURL(downloadURL))
+
+            await firebase.database().ref("users")
+                .child(user.uid)
+                .update({ image: downloadURL })
         }
-
-
+        catch (error) {
+            alert("오류");
+        }
     }
 
 
