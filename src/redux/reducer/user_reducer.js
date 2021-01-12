@@ -1,4 +1,4 @@
-import { SET_USER } from '../actions/types';
+import { SET_USER, CLEAR_USER } from '../actions/types';
 
 // 로그인이 시작된다면 로딩값을 true
 const initialUserState = {
@@ -12,6 +12,12 @@ export default function (state = initialUserState, action) {
             return {
                 ...state,
                 currentUser: action.payload,
+                isLoading: false
+            }
+        case CLEAR_USER:
+            return {
+                ...state,
+                currentUser: null,
                 isLoading: false
             }
         default:

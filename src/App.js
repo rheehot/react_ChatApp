@@ -5,7 +5,7 @@ import {
   useHistory,
 } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from './redux/actions/user_action';
+import { setUser, clearUser } from './redux/actions/user_action';
 
 import firebase from './firebase'
 
@@ -31,6 +31,7 @@ const App = () => {
       // 로그인 실패 상태
       else {
         history.push('/login');
+        dispatch(clearUser())
       }
     });
   }, []);
