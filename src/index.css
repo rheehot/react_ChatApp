@@ -129,3 +129,15 @@ body {
   padding: 10px 20px;
   border-radius: 4px;
 }
+
+.message-form-button {
+  background: #F19F33;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+}
