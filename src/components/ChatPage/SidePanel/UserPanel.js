@@ -10,6 +10,7 @@ const UserPanel = () => {
 
     const user = useSelector(state => state.user.currentUser);
     const dispatch = useDispatch();
+
     const inputOpenImageRef = useRef();
 
     const handleLogout = () => {
